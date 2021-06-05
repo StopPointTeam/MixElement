@@ -2,13 +2,6 @@
 #define MOVEMIXELEMENT_H
 
 
-//注释以关闭调试功能
-#define MOVE_DEBUG
-
-#ifdef MOVE_DEBUG
-#define NeoSerialDebug NeoSerial
-#endif
-
 //轮胎定义
 #define LEFT_A_WHEEL 0
 #define LEFT_B_WHEEL 1
@@ -36,20 +29,20 @@
 #define DEFAULT_TRUN_SPEED_RATE -1.0
 
 //左侧 L298N 接口定义
-#define LEFT_L298N_IN1 24
-#define LEFT_L298N_IN2 25
-#define LEFT_L298N_IN3 26
-#define LEFT_L298N_IN4 27
-#define LEFT_L298N_ENA 8
-#define LEFT_L298N_ENB 9
+#define LEFT_L298N_IN1 7
+#define LEFT_L298N_IN2 6
+#define LEFT_L298N_IN3 8
+#define LEFT_L298N_IN4 9
+#define LEFT_L298N_ENA 4
+#define LEFT_L298N_ENB 5
 
 //右侧 L298N 接口定义
-#define RIGHT_L298N_IN1 28
-#define RIGHT_L298N_IN2 29
-#define RIGHT_L298N_IN3 30
-#define RIGHT_L298N_IN4 31
-#define RIGHT_L298N_ENA 10
-#define RIGHT_L298N_ENB 11
+#define RIGHT_L298N_IN1 13
+#define RIGHT_L298N_IN2 12
+#define RIGHT_L298N_IN3 11
+#define RIGHT_L298N_IN4 10
+#define RIGHT_L298N_ENA 2
+#define RIGHT_L298N_ENB 3
 
 
 class Move

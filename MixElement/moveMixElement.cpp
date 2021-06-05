@@ -2,10 +2,6 @@
 
 #include "moveMixElement.h"
 
-#ifdef MOVE_DEBUG
-#include <NeoHWSerial.h>
-#endif
-
 
 //静态变量
 float Move::global_speed_rate = DEFAULT_GLOBAL_SPEED_RATE; //全局速度比率
@@ -112,20 +108,14 @@ void Move::Wheel(uint8_t wheel, uint8_t rotation, float speed_rate)
 //前进
 void Move::Forward(float speed_rate)
 {
-    Wheel(LEFT_A_WHEEL, FORWARD_ROTATION, speed_rate);
-    Wheel(LEFT_B_WHEEL, FORWARD_ROTATION, speed_rate);
+    Wheel(LEFT_A_WHEEL, FORWARD_ROTATION, speed_rate * 0.9);
+    Wheel(LEFT_B_WHEEL, FORWARD_ROTATION, speed_rate * 0.9);
     Wheel(RIGHT_A_WHEEL, FORWARD_ROTATION, speed_rate);
     Wheel(RIGHT_B_WHEEL, FORWARD_ROTATION, speed_rate);
 
     current_direction = FORWARD;
     current_speed_rate = speed_rate;
     current_turn_speed_rate = 1.0;
-
-    #ifdef MOVE_DEBUG
-    //调试输出前进状态
-    NeoSerialDebug.print(F("#MOVE:   Move Forward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.println(speed_rate);
-    #endif
 }
 
 
@@ -140,12 +130,6 @@ void Move::Backward(float speed_rate)
     current_direction = BACKWARD;    
     current_speed_rate = speed_rate;
     current_turn_speed_rate = 1.0;
-
-    #ifdef MOVE_DEBUG
-    //调试输出后退状态
-    NeoSerialDebug.print(F("#MOVE:   Move Backward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.println(speed_rate);
-    #endif
 }
 
 
@@ -160,12 +144,6 @@ void Move::ForLeftward(float speed_rate, float turn_speed_rate)
     current_direction = FORLEFTWARD;
     current_speed_rate = speed_rate;
     current_turn_speed_rate = turn_speed_rate;
-
-    #ifdef MOVE_DEBUG
-    //调试输出向前左转状态
-    NeoSerialDebug.print(F("#MOVE:   Move ForLeftward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.print(speed_rate); NeoSerialDebug.print(F(" turn_speed_rate: ")); NeoSerialDebug.println(turn_speed_rate);
-    #endif
 }
 
 
@@ -180,12 +158,6 @@ void Move::ForRightward(float speed_rate, float turn_speed_rate)
     current_direction = FORRIGHTWARD;   
     current_speed_rate = speed_rate;
     current_turn_speed_rate = turn_speed_rate;
-
-    #ifdef MOVE_DEBUG
-    //调试输出向前右转状态
-    NeoSerialDebug.print(F("#MOVE:   Move ForRightward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.print(speed_rate); NeoSerialDebug.print(F(" turn_speed_rate: ")); NeoSerialDebug.println(turn_speed_rate);
-    #endif
 }
 
 
@@ -200,12 +172,6 @@ void Move::BackLeftward(float speed_rate, float turn_speed_rate)
     current_direction = BACKLEFTWARD;    
     current_speed_rate = speed_rate;
     current_turn_speed_rate = turn_speed_rate;
-
-    #ifdef MOVE_DEBUG
-    //调试输出向后左转状态
-    NeoSerialDebug.print(F("#MOVE:   Move BackLeftward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.print(speed_rate); NeoSerialDebug.print(F(" turn_speed_rate: ")); NeoSerialDebug.println(turn_speed_rate);
-    #endif
 }
 
 
@@ -220,12 +186,6 @@ void Move::BackRightward(float speed_rate, float turn_speed_rate)
     current_direction = BACKRIGHTWARD;     
     current_speed_rate = speed_rate;
     current_turn_speed_rate = turn_speed_rate;
-
-    #ifdef MOVE_DEBUG
-    //调试输出向后右转状态
-    NeoSerialDebug.print(F("#MOVE:   Move BackRightward"));
-    NeoSerialDebug.print(F(" speed_rate: ")); NeoSerialDebug.print(speed_rate); NeoSerialDebug.print(F(" turn_speed_rate: ")); NeoSerialDebug.println(turn_speed_rate);
-    #endif
 }
 
 
@@ -240,11 +200,6 @@ void Move::Stop(void)
     current_direction = STOP;
     current_speed_rate = 0;
     current_turn_speed_rate = 1.0;
-
-    #ifdef MOVE_DEBUG
-    //调试输出制动状态
-    NeoSerialDebug.println(F("#MOVE:   Move Stop"));
-    #endif
 }
 
 
